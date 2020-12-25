@@ -129,8 +129,8 @@ interface ConnectionCloseHandler {
 }
 
 interface ConnectionOptions {
-    cancellationStrategy: CancellationStrategy
-    maxRestartCount?: number
+  cancellationStrategy: CancellationStrategy
+  maxRestartCount?: number
 }
 
 function createConnection(
@@ -723,7 +723,7 @@ export interface LanguageClientOptions {
   workspaceFolder?: WorkspaceFolder
   connectionOptions?: ConnectionOptions
   markdown?: {
-	  isTrusted?: boolean;
+    isTrusted?: boolean;
   }
 }
 
@@ -923,8 +923,8 @@ export interface DynamicFeature<RO> {
   ): void
 
   /**
-	 * The signature (e.g. method) for which this features support dynamic activation / registration.
-	 */
+   * The signature (e.g. method) for which this features support dynamic activation / registration.
+   */
   registrationType: RegistrationType<RO>
 
   /**
@@ -1000,7 +1000,7 @@ abstract class DocumentNotifiactions<P, E>
       selectors: IterableIterator<DocumentSelector>,
       data: E
     ) => boolean
-  ) { }
+  ) {}
 
   public abstract registrationType: RegistrationType<TextDocumentRegistrationOptions>
 
@@ -1039,7 +1039,7 @@ abstract class DocumentNotifiactions<P, E>
     }
   }
 
-  protected notificationSent(_data: E): void { }
+  protected notificationSent(_data: E): void {}
 
   public unregister(id: string): void {
     this._selectors.delete(id)
@@ -1234,7 +1234,7 @@ class DidChangeTextDocumentFeature
   private _listener: Disposable | undefined
   private _changeData: Map<string, DidChangeTextDocumentData> = new Map<string, DidChangeTextDocumentData>()
 
-  constructor(private _client: BaseLanguageClient) { }
+  constructor(private _client: BaseLanguageClient) {}
 
   public get registrationType(): RegistrationType<TextDocumentChangeRegistrationOptions> {
     return DidChangeTextDocumentNotification.type
@@ -1396,7 +1396,7 @@ class WillSaveWaitUntilFeature implements DynamicFeature<TextDocumentRegistratio
   private _listener: Disposable | undefined
   private _selectors: Map<string, DocumentSelector> = new Map<string, DocumentSelector>()
 
-  constructor(private _client: BaseLanguageClient) { }
+  constructor(private _client: BaseLanguageClient) {}
 
   public get registrationType(): RegistrationType<TextDocumentRegistrationOptions> {
     return WillSaveTextDocumentWaitUntilRequest.type
@@ -1551,7 +1551,7 @@ class FileSystemWatcherFeature
   constructor(
     _client: BaseLanguageClient,
     private _notifyFileEvent: (event: FileEvent) => void
-  ) { }
+  ) {}
 
   public get registrationType(): RegistrationType<DidChangeWatchedFilesRegistrationOptions> {
     return DidChangeWatchedFilesNotification.type
@@ -1567,7 +1567,7 @@ class FileSystemWatcherFeature
   public initialize(
     _capabilities: ServerCapabilities,
     _documentSelector: DocumentSelector
-  ): void { }
+  ): void {}
 
   public register(
     data: RegistrationData<DidChangeWatchedFilesRegistrationOptions>
@@ -1697,9 +1697,9 @@ export abstract class TextDocumentFeature<
   constructor(
     protected _client: BaseLanguageClient,
     private _registrationType: RegistrationType<RO>
-  ) { }
+  ) {}
 
-  public get registrationType():  RegistrationType<RO> {
+  public get registrationType(): RegistrationType<RO> {
     return this._registrationType
   }
 
@@ -1784,8 +1784,8 @@ export interface WorkspaceProviderFeature<PR> {
 }
 
 interface WorkspaceFeatureRegistration<PR> {
-	disposable: Disposable;
-	provider: PR;
+  disposable: Disposable;
+  provider: PR;
 }
 
 abstract class WorkspaceFeature<RO, PR> implements DynamicFeature<RO> {
@@ -1794,7 +1794,7 @@ abstract class WorkspaceFeature<RO, PR> implements DynamicFeature<RO> {
   constructor(
     protected _client: BaseLanguageClient,
     private _registrationType: RegistrationType<RO>
-  ) { }
+  ) {}
 
   public get registrationType(): RegistrationType<RO> {
     return this._registrationType
@@ -2877,7 +2877,7 @@ class DocumentLinkFeature extends TextDocumentFeature<DocumentLinkOptions, Docum
 class ConfigurationFeature implements DynamicFeature<DidChangeConfigurationRegistrationOptions> {
   private _listeners: Map<string, Disposable> = new Map<string, Disposable>()
 
-  constructor(private _client: BaseLanguageClient) { }
+  constructor(private _client: BaseLanguageClient) {}
 
   public get registrationType(): RegistrationType<DidChangeConfigurationRegistrationOptions> {
     return DidChangeConfigurationNotification.type
@@ -3014,7 +3014,7 @@ class ConfigurationFeature implements DynamicFeature<DidChangeConfigurationRegis
 class ExecuteCommandFeature
   implements DynamicFeature<ExecuteCommandRegistrationOptions> {
   private _commands: Map<string, Disposable[]> = new Map<string, Disposable[]>()
-  constructor(private _client: BaseLanguageClient) { }
+  constructor(private _client: BaseLanguageClient) {}
 
   public get registrationType(): RegistrationType<ExecuteCommandRegistrationOptions> {
     return ExecuteCommandRequest.type
@@ -3409,7 +3409,7 @@ export abstract class BaseLanguageClient {
           })
         })
       },
-      () => { }
+      () => {}
     )
   }
 
